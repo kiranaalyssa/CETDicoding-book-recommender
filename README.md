@@ -88,20 +88,21 @@ Pendekatan ini tidak bergantung pada interaksi pengguna lain, melainkan fokus pa
 ### Skema Sistem Rekomendasi
 Skema rekomendasi yang digunakan adalah sebagai berikut:
 1. Sistem menerima judul buku input dari pengguna.
-2. Sistem menghitung tingkat kemiripan buku input dengan seluruh buku lain dalam dataset.
-3. Buku-buku dengan nilai kemiripan tertinggi dipilih sebagai rekomendasi.
-4. Hasil rekomendasi ditampilkan dalam bentuk daftar buku yang paling relevan.
+2. Sistem mengambil representasi vektor TF-IDF dari buku input berdasarkan genre.
+3. Sistem menghitung nilai Cosine Similarity antara buku input dan seluruh buku lain dalam dataset.
+4. Buku-buku dengan nilai kemiripan tertinggi dipilih sebagai rekomendasi.
+5. Hasil rekomendasi ditampilkan dalam bentuk daftar buku yang paling relevan.
 
-### Algoritma yang Digunakan
-Untuk mengukur tingkat kemiripan antar buku, digunakan algoritma Cosine Similarity. Algoritma ini mengukur kesamaan antara dua vektor dengan menghitung sudut kosinus di antara keduanya. Nilai cosine similarity berada pada rentang 0 hingga 1, di mana nilai yang semakin mendekati 1 menunjukkan tingkat kemiripan yang semakin tinggi.
+### Metode yang Digunakan
+Untuk mengukur tingkat kemiripan antar buku, digunakan metode Cosine Similarity. Sebelum proses perhitungan kemiripan dilakukan, fitur teks berupa genre buku terlebih dahulu diubah menjadi representasi numerik menggunakan TF-IDF (Term Frequency–Inverse Document Frequency). TF-IDF berfungsi untuk merepresentasikan setiap buku dalam bentuk vektor berdasarkan pentingnya kata atau genre yang dimiliki.
 
-Dalam konteks sistem rekomendasi ini, cosine similarity digunakan untuk membandingkan representasi genre antar buku, sehingga buku dengan genre yang paling mirip akan memiliki nilai kemiripan tertinggi.
+Selanjutnya, Cosine Similarity digunakan untuk mengukur kesamaan antara dua vektor TF-IDF dengan menghitung sudut kosinus di antara keduanya. Nilai cosine similarity berada pada rentang 0 hingga 1, di mana nilai yang semakin mendekati 1 menunjukkan tingkat kemiripan yang semakin tinggi. Dalam konteks sistem rekomendasi ini, buku dengan nilai kemiripan tertinggi akan direkomendasikan karena memiliki genre yang paling mirip.
 
 ### Cara Kerja Sistem Rekomendasi
 Ketika pengguna memilih sebuah buku, sistem akan:
-* Mengambil representasi fitur dari buku tersebut.
-* Menghitung nilai cosine similarity antara buku input dan seluruh buku lain.
-* Mengurutkan hasil berdasarkan nilai kemiripan tertinggi.
+* Mengambil representasi vektor TF-IDF dari buku tersebut berdasarkan genre.
+* Menghitung nilai Cosine Similarity antara vektor buku input dan seluruh vektor buku lainnya.
+* Mengurutkan buku berdasarkan nilai kemiripan tertinggi.
 * Menampilkan beberapa buku teratas sebagai rekomendasi.
 
 ### Hasil Rekomendasi
